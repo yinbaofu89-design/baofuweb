@@ -1,0 +1,31 @@
+conf
+snmp agent version v2c
+
+snmp community BSMONITOR
+snmp target target1 ip 10.212.27.53 udp-port 162 tag target1 timeout 1500 retries 3 v2c sec-name BSMONITOR
+snmp notify target1 tag target1 type trap
+snmp vacm group BSMONITOR member BSMONITOR sec-model v2c
+snmp vacm view bc1 subtree 1.3 included
+snmp vacm group BSMONITOR access v2c no-auth-no-priv read-view bc1 notify-view bc1
+exit
+exit
+
+snmp community bs-roc-mon
+snmp target target5 ip 10.254.252.1 udp-port 162 tag target5 timeout 1500 retries 3 v2c sec-name bs-roc-mon
+snmp notify target5 tag target5 type trap
+snmp vacm group bs-roc-mon member bs-roc-mon sec-model v2c
+snmp vacm view bc4 subtree 1.3 included
+snmp vacm group bs-roc-mon access v2c no-auth-no-priv read-view bc4 notify-view bc4
+exit
+exit
+
+snmp community infraget
+snmp target target2 ip 140.52.21.251 udp-port 162 tag target2 timeout 1500 retries 3 v2c sec-name infraget
+snmp notify target2 tag target2 type trap
+snmp target target3 ip 10.99.203.16 udp-port 162 tag target3 timeout 1500 retries 3 v2c sec-name infraget
+snmp notify target3 tag target3 type trap
+snmp vacm group infraget member infraget sec-model v2c
+snmp vacm view bc2 subtree 1.3 included
+snmp vacm group infraget access v2c no-auth-no-priv read-view bc2 notify-view bc2
+exit
+exit
